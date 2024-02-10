@@ -3,14 +3,14 @@ from base.models import Category,Expense,Income
 from django.conf import settings
 
 
-class ExpenseSerializer(serializers):
-    class meta:
+class ExpenseSerializer(serializers.ModelSerializer):
+    class Meta:
         model=Expense
         fields=('user','amount','date','category')
         
-class IncomeSerializer(serializers):
-    class meta:
-        model=Expense
+class IncomeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Income
         fields=('user','amount','date','category')
         
 
