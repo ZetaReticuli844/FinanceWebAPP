@@ -1,6 +1,7 @@
-import React from 'react'
+
 
 const StatsBoard = () => {
+  
   return (
     <div className='ml-10'>
 

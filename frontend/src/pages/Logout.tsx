@@ -13,6 +13,7 @@ export default function Logout() {
 		localStorage.removeItem('refresh_token');
 		axiosInstance.defaults.headers['Authorization'] = null;
 		navigate('/login');
+		console.log("Successful logout")
 	});
 	return <div>Logout</div>;
 }

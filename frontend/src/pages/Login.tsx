@@ -5,6 +5,7 @@ import UserContext from '../context/UserContext';
 const Login = () => {
   const {setIsLoggedIn}=useContext(UserContext)
   const navigate = useNavigate();
+  const [token, setToken]=useState()
   const initialFormData = Object.freeze({
     email: '',
     password: '',
@@ -29,18 +30,26 @@ const Login = () => {
         password: formData.password,
       })
       .then((res) => {
+  
         localStorage.setItem('access_token', res.data.access);
         localStorage.setItem('refresh_token', res.data.refresh);
+        setToken(res.data.access)
         axiosInstance.defaults.headers['Authorization'] =
           'JWT ' + localStorage.getItem('access_token');
-        setIsLoggedIn(true); // Set isLoggedIn to true upon successful login
-        navigate('/');
+        setIsLoggedIn(true)
+        console.log("Successful login")
+        navigate('/Home');
+       
       })
       .catch((error) => {
         console.error('Login failed:', error);
-        // Handle login failure
+        
       });
+      
+
   };
+
+ 
   return (
     <div className='ml-10'>
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>

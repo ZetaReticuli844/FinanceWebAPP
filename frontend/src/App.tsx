@@ -6,6 +6,7 @@ import CreateUser from './pages/CreateUser'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import UserContexProvider from './context/UserContextProvider'
+import Welcome from './pages/Welcome'
 const App = () => {
   
   return (
@@ -13,7 +14,8 @@ const App = () => {
 <UserContexProvider>
 <Navbar/>
     <Routes>
-  <Route path="/" Component={Home}/>
+  <Route path='/' Component={Welcome}/>     
+  <Route path="/Home/" Component={Home}/>
   <Route path="/register" Component={CreateUser}/>
   <Route path="/login"  Component={Login}/>
   <Route path="/logout" Component={Logout}/>

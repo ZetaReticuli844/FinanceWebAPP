@@ -1,6 +1,24 @@
-import React from 'react'
+import { useContext, useEffect, useState } from 'react'
+import axiosInstance from '../axios';
+import UserContext from '../context/UserContext';
 
 const ExpenseBoard = () => {
+    const {setIsLoggedIn}=useContext(UserContext)
+    useEffect(()=>{
+        setIsLoggedIn(true)
+    },[])
+
+    const currentDate = new Date();
+
+    const [expense, setExpense]=useState<Expense[]>([])
+
+        useEffect(()=>{
+            axiosInstance.get(`expense/`).then((res):any => {
+                setExpense(res.data)
+                console.log(res.data);
+            });
+        },[])
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mr-10">
     <table className="w-full text-sm text-left rtl:text-right text-red-100 dark:text-red-100">
@@ -20,18 +38,19 @@ const ExpenseBoard = () => {
             </tr>
         </thead>
         <tbody>
-            <tr className="bg-red-600 border-b border-red-400 hover:bg-red-500">
-                <th scope="row" className="px-6 py-4 font-medium text-red-50 whitespace-nowrap dark:text-red-100">
-                    Apple MacBook Pro 17"
-                </th>
-                <td className="px-6 py-4">
-                    Silver
-                </td>
-                <td className="px-6 py-4">
-                    Laptop
-              </td>
-            </tr>
-            
+        {expense.map((item, index) => (
+                        <tr key={index} className="bg-red-600 border-b border-red-400 hover:bg-red-500">
+                            <td className="px-6 py-4 font-medium text-red-50 whitespace-nowrap dark:text-red-100">
+                                ${item.amount}
+                            </td>
+                            <td className="px-6 py-4">
+                                {item.category}
+                            </td>
+                            <td className="px-6 py-4">
+                                {item.date}
+                            </td>
+                        </tr>
+                    ))}
         </tbody>
     </table>
 </div>
