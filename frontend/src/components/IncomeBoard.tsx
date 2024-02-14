@@ -1,114 +1,134 @@
-import React, { useContext, useEffect, useState } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import axiosInstance from '../axios';
 import UserContext from '../context/UserContext';
+import { MdDelete } from "react-icons/md";
 
-const AddIncome=()=>{
-    const initialFormData = Object.freeze({
-        user: '',
-        amount: '',
-        date: '',
-        category:'',
-      });
-      const [formData, updateFormData] = useState(initialFormData);
+// const DeleteIncome=(income)=>{
     
-      const handleChange = (e) => {
-        updateFormData({
+// axiosInstance.delete('income/')
+// .then(response => {
+//   console.log('Deleted successfully');
+// })
+// .catch(error => {
+//   console.error('Error deleting:', error);
+// });
+// }
+
+const CreateIncome = () => {
+  const { user } = useContext(UserContext);
+
+  const [formData, setFormData] = useState({
+      userId: user,
+      amount: 0,
+      date: '',
+      category: ''
+  });
+
+  const handleChange = (e) => {
+      setFormData({
           ...formData,
-          [e.target.name]: e.target.value.trim(),
-        });
-        console.log(formData)
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-      }
-
-    axiosInstance
-      .post(`create/income`, {
-        user: formData.user,
-        amount: formData.amount,
-        date: formData.date,
-        category: formData.category
-      })
-      .then((res) => {
-  
-        localStorage.setItem('access_token', res.data.access);
-        localStorage.setItem('refresh_token', res.data.refresh);
-        
-        axiosInstance.defaults.headers['Authorization'] =
-          'JWT ' + localStorage.getItem('access_token') 
-       
-      })
-      .catch((error) => {
-        console.error('income was not added', error);
-        
+          [e.target.name]: e.target.value.trim()
       });
+  };
 
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      axiosInstance.post(`create/income/`, {
+          user: user,
+          amount: formData.amount,
+          date: formData.date,
+          category: formData.category
+      })
+      .then(function (response) {
+          console.log(response);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  };
+  console.log(formData)
 
-      return (
-      
-      <div>
-     {/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>open modal</button>
+  return (<div>
+    <button className="btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={()=>document.getElementById('my_modal_2').showModal()}>Add Income</button>
 <dialog id="my_modal_2" className="modal">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Hello!</h3>
-    <form onSubmit={handleSubmit}>
-    <div className="mb-5">
-  <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User</label>
-  <input onChange={handleChange} type="text" id="base-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={formData.user} />
-
-  <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
-  <input onChange={handleChange} type="text" id="base-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={formData.amount} />
-
-  <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-  <input onChange={handleChange} type="date" id="base-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={formData.date} />
-
- 
-
-
-</div>
-<label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-  <input onChange={handleChange} type="text" id="base-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={formData.category} />
-<button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
- </form>
-  </div>
+      <div>
+          <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
+              <input
+                  type="text"
+                  id='amount'
+                  className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                  value={formData.amount}
+                  placeholder="amount"
+                  name="amount"
+                  onChange={handleChange}
+              />
+              <input
+                  type="text"
+                  id='date'
+                  className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                  value={formData.date}
+                  placeholder="YYYY-MM-DD"
+                  name="date"
+                  onChange={handleChange}
+              />
+              <input
+                  type="text"
+                  id='category'
+                  className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                  value={formData.category}
+                  placeholder="category"
+                  name="category"
+                  onChange={handleChange}
+              />
+              <button
+                  type="submit"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                  Submit
+              </button>
+          </form>
+      </div>
+      </div>
   <form method="dialog" className="modal-backdrop">
-    <button></button>
+    <button>close</button>
   </form>
 </dialog>
-      </div>
-
-
-    )
-}
-
-
-
-
+</div>
+  );
+};
 
 
 const IncomeBoard = () => {
-    const currentDate = new Date();
+    
+const {setUser}=useContext(UserContext)
 
     const [income, setIncome]=useState<Income[]>([])
 
         useEffect(()=>{
             axiosInstance.get(`income/`).then((res):any => {
                 setIncome(res.data)
-                console.log(res.data);
+                // console.log(res.data);
             });
         },[])
 
-        const {setUser}=useContext(UserContext)
-        setUser(income.user)
-        console.log(income.user)
-
+        {income.map((item) => (
+            setUser(item.user)
+         
+            
+        
+        ))}
+ 
+  
   return (
 
     <div>
-{/* <AddIncome/> */}
+        <div className='flex justify-center'>
+      <CreateIncome/>
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-10">
     <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
         <thead className="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
@@ -122,6 +142,8 @@ const IncomeBoard = () => {
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Date
+                    
+                    
                 </th>
                
             </tr>
@@ -138,6 +160,10 @@ const IncomeBoard = () => {
                             </td>
                             <td className="px-6 py-4">
                                 {item.date}
+
+                                <MdDelete className='w-10'/>
+
+                                
                             </td>
                         </tr>
                     ))}

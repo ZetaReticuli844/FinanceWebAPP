@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const UserContexProvider=({children}:any)=>{
     const [isLoggedIn,setIsLoggedIn]=useState<Boolean>(false)
-    const [user,setUser]=useState<string>('')
+    const [user,setUser]=useState()
 
 
     return(

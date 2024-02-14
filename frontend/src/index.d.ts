@@ -1,7 +1,7 @@
 interface Income{
     userId:number;
     amount:number;
-    date:Date;
+    date:string;
     category:string;
 
 }
@@ -10,6 +10,6 @@ interface Income{
 interface Expense{
     userId:number;
     amount:number;
-    date:Date;
+    date:string;
     category:string;
 }

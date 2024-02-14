@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Logout from './pages/Logout'
 import UserContexProvider from './context/UserContextProvider'
 import Welcome from './pages/Welcome'
+import AddIncome from './pages/CreateIncome'
 const App = () => {
   
   return (
@@ -19,6 +20,7 @@ const App = () => {
   <Route path="/register" Component={CreateUser}/>
   <Route path="/login"  Component={Login}/>
   <Route path="/logout" Component={Logout}/>
+  <Route path='/create/income' Component={AddIncome}/>
     </Routes>
     </UserContexProvider>
     </BrowserRouter>
