@@ -111,6 +111,10 @@ const {setUser}=useContext(UserContext)
             
         
         ))}
+
+
+    const {setIncomes}=useContext(UserContext)
+    setIncomes(income)
  
   
   return (

@@ -117,6 +117,10 @@ const ExpenseBoard = () => {
         
         ))}
 
+        const {setExpenses}=useContext(UserContext)
+        setExpenses(expense)
+        
+
   return (
     <div>
         <div className='flex justify-center'>
