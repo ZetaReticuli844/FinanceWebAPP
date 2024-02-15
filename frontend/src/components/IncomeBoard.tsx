@@ -2,17 +2,7 @@ import  { useContext, useEffect, useState } from 'react'
 import axiosInstance from '../axios';
 import UserContext from '../context/UserContext';
 import { MdDelete } from "react-icons/md";
-
-// const DeleteIncome=(income)=>{
-    
-// axiosInstance.delete('income/')
-// .then(response => {
-//   console.log('Deleted successfully');
-// })
-// .catch(error => {
-//   console.error('Error deleting:', error);
-// });
-// }
+import { Link } from 'react-router-dom';
 
 const CreateIncome = () => {
   const { user } = useContext(UserContext);
@@ -106,7 +96,7 @@ const IncomeBoard = () => {
     
 const {setUser}=useContext(UserContext)
 
-    const [income, setIncome]=useState<Income[]>([])
+    const [income, setIncome]=useState([])
 
         useEffect(()=>{
             axiosInstance.get(`income/`).then((res):any => {
@@ -124,55 +114,50 @@ const {setUser}=useContext(UserContext)
  
   
   return (
-
     <div>
-        <div className='flex justify-center'>
-      <CreateIncome/>
+      <div className="flex justify-center">
+        <CreateIncome />
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-10">
-    <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-        <thead className="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
+        <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
+          <thead className="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
             <tr>
-                <th scope="col" className="px-6 py-3">
-                   Income
-                </th>
-              
-                <th scope="col" className="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Date
-                    
-                    
-                </th>
-               
+              <th scope="col" className="px-6 py-3">
+                Income
+              </th>
+
+              <th scope="col" className="px-6 py-3">
+                Category
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Date
+              </th>
             </tr>
-        </thead>
-        <tbody>
-            
-        {income.map((item, index) => (
-                        <tr key={index} className="bg-blue-600 border-b border-blue-400 hover:bg-blue-500">
-                            <td className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                                ${item.amount}
-                            </td>
-                            <td className="px-6 py-4">
-                                {item.category}
-                            </td>
-                            <td className="px-6 py-4">
-                                {item.date}
+          </thead>
+          <tbody>
+            {income.map((item, index) => (
+              <tr
+                key={index}
+                className="bg-blue-600 border-b border-blue-400 hover:bg-blue-500"
+              >
+                <td className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                  ${item.amount}
+                </td>
+                <td className="px-6 py-4">{item.category}</td>
+                <td className="px-6 py-4">
+                  {item.date}
 
-                                <MdDelete className='w-10'/>
-
-                                
-                            </td>
-                        </tr>
-                    ))}
-        </tbody>
-    </table>
-</div>
-</div>
-
-  )
+                  <Link to={`/income/delete/${item.id}`}>
+                    <MdDelete className="w-10" />
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default IncomeBoard

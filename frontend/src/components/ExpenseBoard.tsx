@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import axiosInstance from '../axios';
 import UserContext from '../context/UserContext';
-
+import { Link } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
 const CreateExpense = () => {
     const { user } = useContext(UserContext);
   
@@ -100,7 +101,7 @@ const ExpenseBoard = () => {
     },[])
 
 
-    const [expense, setExpense]=useState<Expense[]>([])
+    const [expense, setExpense]=useState([])
 
         useEffect(()=>{
             axiosInstance.get(`expense/`).then((res):any => {
@@ -150,6 +151,9 @@ const ExpenseBoard = () => {
                             </td>
                             <td className="px-6 py-4">
                                 {item.date}
+                                <Link to={`/expense/delete/${item.id}`}>
+                    <MdDelete className="w-10" />
+                  </Link>
                             </td>
                         </tr>
                     ))}

@@ -30,11 +30,10 @@ class ExpenseList(ListAPIView):
 
 class ExpenseDetail(RetrieveUpdateDestroyAPIView):
     permission_classes=[PostUserWritePermission]
-    
     serializer_class=ExpenseSerializer
     def get_queryset(self):
         user = self.request.user
-        return Income.objects.filter(user=user)
+        return Expense.objects.filter(user=user)
  
 
 class IncomeList(ListAPIView):
@@ -48,7 +47,6 @@ class IncomeList(ListAPIView):
 
 class IncomeDetail(RetrieveUpdateDestroyAPIView):
     permission_classes=[PostUserWritePermission]
-  
     serializer_class=IncomeSerializer
     def get_queryset(self):
         user = self.request.user
