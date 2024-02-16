@@ -19,7 +19,7 @@ const App = () => {
 <Navbar/>
     <Routes>
   <Route path='/' Component={Welcome}/>     
-  <Route path="/Home/" Component={Home}/>
+  <Route path="/Home" Component={Home}/>
   <Route path="/register" Component={CreateUser}/>
   <Route path="/login"  Component={Login}/>
   <Route path="/logout" Component={Logout}/>

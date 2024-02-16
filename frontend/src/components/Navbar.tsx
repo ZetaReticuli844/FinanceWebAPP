@@ -16,7 +16,7 @@ const Navbar = () => {
             {isLoggedIn ? (
               <>
                 <li><Link to="/logout">Logout</Link></li>
-                <li><Link to="">Settings</Link></li>
+             
               </>
             ) : (
               <li><Link to="/login">Login</Link></li>
