@@ -53,6 +53,7 @@ const CreateIncome = () => {
                   placeholder="amount"
                   name="amount"
                   onChange={handleChange}
+                  
               />
               <input
                   type="text"

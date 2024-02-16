@@ -1,4 +1,3 @@
-import React from 'react';
 import ExpenseBoard from '../components/ExpenseBoard';
 import IncomeBoard from '../components/IncomeBoard';
 import StatsBoard from '../components/StatsBoard';

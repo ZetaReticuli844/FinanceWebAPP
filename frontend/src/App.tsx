@@ -10,6 +10,7 @@ import Welcome from './pages/Welcome'
 import AddIncome from './pages/CreateIncome'
 import DeleteIncome from './pages/DeleteIncome'
 import DeleteExpense from './pages/DeleteExpense'
+
 const App = () => {
   
   return (
@@ -25,6 +26,7 @@ const App = () => {
   <Route path='/create/income' Component={AddIncome}/>
   <Route path='/income/delete/:id' Component={DeleteIncome}/>
   <Route path='/expense/delete/:id' Component={DeleteExpense}/>
+  
     </Routes>
     </UserContexProvider>
     </BrowserRouter>
