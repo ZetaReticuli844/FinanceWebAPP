@@ -40,7 +40,7 @@ const CreateExpense = () => {
     return (<div>
       <button className="btn text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" onClick={()=>document.getElementById('my_modal_1').showModal()}>Add Expense</button>
   <dialog id="my_modal_1" className="modal">
-    <div className="modal-box">
+    <div className="modal-box bg-white dark:bg-slate-800">
         <div>
             <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
                 <input
@@ -56,7 +56,7 @@ const CreateExpense = () => {
                 <input
                     type="text"
                     id='date'
-                    className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-red-500 dark:focus:border-red-500"
+                    className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-red-500 dark:focus:border-red-500"
                     required
                     value={formData.date}
                     placeholder="YYYY-MM-DD"
@@ -66,7 +66,7 @@ const CreateExpense = () => {
                 <input
                     type="text"
                     id='category'
-                    className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-red-500 dark:focus:border-red-500"
+                    className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-red-500 dark:focus:border-red-500"
                     required
                     value={formData.category}
                     placeholder="category"
