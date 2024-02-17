@@ -1,26 +1,35 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+import {CgDarkMode} from 'react-icons/cg'
 
 const Navbar = () => {
   const {isLoggedIn}=useContext(UserContext)
+  const handleDarkModeToggle = () => {
+    document.body.classList.toggle('dark');
+  };
+  
   
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar  backdrop-filter backdrop-blur-lg">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">FinTrack</a>
+          <h1 className="btn btn-ghost text-xl font-bold text-blue-600 dark:text-blue-500">FinTrack</h1>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
+          <li><button className="w-10" onClick={handleDarkModeToggle}>
+           <CgDarkMode className="w-7 h-7 text-black dark:text-white"/>
+           </button></li>
             {isLoggedIn ? (
               <>
-                <li><Link to="/logout">Logout</Link></li>
+                <li className='text-black dark:text-white'><Link to="/logout">Logout</Link></li>
              
               </>
             ) : (
-              <li><Link to="/login">Login</Link></li>
+              <li className='text-black dark:text-white'><Link to="/login">Login</Link></li>
             )}
+            
           </ul>
         </div>
       </div>

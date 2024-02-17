@@ -123,7 +123,7 @@ const ExpenseBoard = () => {
 
   return (
     <div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center mr-10 mb-3'>
 
         <CreateExpense/>
         </div>
@@ -148,7 +148,7 @@ const ExpenseBoard = () => {
         {expense.map((item, index) => (
                         <tr key={index} className="bg-red-600 border-b border-red-400 hover:bg-red-500">
                             <td className="px-6 py-4 font-medium text-red-50 whitespace-nowrap dark:text-red-100">
-                                ${item.amount}
+                            ₹{item.amount}
                             </td>
                             <td className="px-6 py-4">
                                 {item.category}

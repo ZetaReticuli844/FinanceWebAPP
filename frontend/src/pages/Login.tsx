@@ -51,7 +51,7 @@ const Login = () => {
 
  
   return (
-    <div className='ml-10'>
+    <div className='mt-10'>
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
   <div className="mb-5">
     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>

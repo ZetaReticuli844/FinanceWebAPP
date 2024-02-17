@@ -3,8 +3,10 @@ import axiosInstance from '../axios';
 import UserContext from '../context/UserContext';
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const CreateIncome = () => {
+
+  
   const { user } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
@@ -31,10 +33,12 @@ const CreateIncome = () => {
       })
       .then(function (response) {
           console.log(response);
+          
       })
       .catch(function (error) {
           console.log(error);
       });
+      
   };
   console.log(formData)
 
@@ -97,13 +101,16 @@ const IncomeBoard = () => {
     
 const {setUser}=useContext(UserContext)
 
-    const [income, setIncome]=useState([])
+const [income, setIncome]=useState([])
+const fetchData=()=>{
+  axiosInstance.get(`income/`).then((res):any => {
+    setIncome(res.data)
+    // console.log(res.data);
+});
+}
 
         useEffect(()=>{
-            axiosInstance.get(`income/`).then((res):any => {
-                setIncome(res.data)
-                // console.log(res.data);
-            });
+          fetchData()
         },[])
 
         {income.map((item) => (
@@ -120,10 +127,10 @@ const {setUser}=useContext(UserContext)
   
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex justify-center ml-10 mb-3">
         <CreateIncome />
       </div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-10">
+      <div className="relative overflow-x-auto shadow sm:rounded-lg ml-10">
         <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
           <thead className="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
             <tr>
@@ -146,7 +153,7 @@ const {setUser}=useContext(UserContext)
                 className="bg-blue-600 border-b border-blue-400 hover:bg-blue-500"
               >
                 <td className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                  ${item.amount}
+                ₹{item.amount}
                 </td>
                 <td className="px-6 py-4">{item.category}</td>
                 <td className="px-6 py-4">

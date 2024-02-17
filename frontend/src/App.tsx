@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -15,6 +14,7 @@ const App = () => {
   
   return (
 <BrowserRouter>
+<div className='bg-white dark:bg-dark-tremor-ring h-screen flex flex-col'>
 <UserContexProvider>
 <Navbar/>
     <Routes>
@@ -29,6 +29,7 @@ const App = () => {
   
     </Routes>
     </UserContexProvider>
+    </div>
     </BrowserRouter>
 
   )

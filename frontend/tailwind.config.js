@@ -9,7 +9,9 @@ export default {
     "./node_modules/flowbite/**/*.js",
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
+  
   theme: {
+   
   transparent: 'transparent',
   current: 'currentColor',
   extend: {
@@ -133,6 +135,8 @@ safelist: [
 ],
 plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms')],
 plugins: [require("daisyui"), require('flowbite/plugin')],
+darkMode:'class'
+
 };
 
 

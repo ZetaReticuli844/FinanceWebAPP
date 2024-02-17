@@ -8,7 +8,7 @@ const StatsBoard = () => {
   const { expenses } = useContext(UserContext);
 
   const dataFormatter = (number) =>
-    `$ ${Intl.NumberFormat('us').format(number).toString()}`;
+    `₹ ${Intl.NumberFormat('us').format(number).toString()}`;
 
   const incomeWithNumbers = incomes.map(item => ({
     ...item,
@@ -54,7 +54,7 @@ const StatsBoard = () => {
   const monthlySummary = calculateMonthlySummary(incomeWithNumbers, expensesWithNumbers);
 
   return (
-    <div className='ml-10 mr-10'>
+    <div className='ml-10 mr-10 '>
       <div className="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div className="mx-auto space-y-12">
           <div className="space-y-3">

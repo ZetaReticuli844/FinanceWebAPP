@@ -6,17 +6,20 @@ import StatsBoard from '../components/StatsBoard';
 const Home = () => {
   return (
   
-    <div className="flex justify-between mt-10">
-      <div className="w-1/3">
+    <div className="flex justify-between mt-5">
+      <div className='w-full'>
+      <div className="w-full mr-3">
         <IncomeBoard />
       </div>
-      <div className="w-1/3">
+      <div className="w-full ml-10 mt-3">
+        <ExpenseBoard />
+      </div>
+      </div>
+      <div className="w-full">
         <StatsBoard />
       </div>
       
-      <div className="w-1/3">
-        <ExpenseBoard />
-      </div>
+     
     </div>
   );
 };
