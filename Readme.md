@@ -56,5 +56,14 @@ Finance Tracker is a web application designed to help users manage their finance
     ```bash
     npm run dev
     ``` 
+6. You can use this dummy account to try out the project:
+email:
+```bash
+kazuma@email.com
+```
+password:
+```bash
+megumin10
+```
 
-Ensure to follow these steps accurately to set up and run the Finance Tracker application smoothly and also make sure that you have node and python installed on your machine
+Ensure to follow these steps accurately to set up and run the Finance Tracker application smoothly and also make sure that you have node and python installed on your machine.
