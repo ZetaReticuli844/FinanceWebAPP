@@ -1,11 +1,10 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 const Welcome = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+  const navigate=useNavigate()
+  React.useEffect(()=>{
+navigate('/login')
+  })
 }
 
 export default Welcome
