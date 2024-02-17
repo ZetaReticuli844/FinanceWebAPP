@@ -15,11 +15,46 @@ Finance Tracker is a web application designed to help users manage their finance
 
 - **Front End**: React
 - **Back End**: Django
-- **Database**: sqlite3
+- **Database**: SQLite3
 - **Authentication**: JWT (JSON Web Tokens) for secure user authentication
-
 
 ## Installation
 
 1. Clone the repository:
+    ```bash
+    git clone https://github.com/ZetaReticuli844/Workout-timer-APP.git
+    ```
 
+2. Create a Python virtual environment:
+    ```bash
+    python3 -m venv myvenv
+    ```
+    ```bash
+    source myvenv/bin/activate
+    ```
+
+3. Change the directory to the backend folder and install dependencies:
+    ```bash
+    cd backend
+    ```
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Run the Django server:
+    ```bash
+    python manage.py runserver
+    ```
+
+5. Change the directory to the frontend and install dependencies:
+    ```bash
+    cd frontend
+    ```
+    ```bash
+    npm install
+    ```
+    ```bash
+    npm run dev
+    ``` 
+
+Ensure to follow these steps accurately to set up and run the Finance Tracker application smoothly and also make sure that you have node and python installed on your machine
